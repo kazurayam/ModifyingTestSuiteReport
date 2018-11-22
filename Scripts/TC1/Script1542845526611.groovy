@@ -14,6 +14,7 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 import com.kms.katalon.core.configuration.RunConfiguration
+import com.kms.katalon.core.model.FailureHandling
 
 
 WebUI.openBrowser('')
@@ -49,20 +50,32 @@ WebUI.click(findTestObject('Object Repository/Page_CURA Healthcare Service/butto
 WebUI.click(findTestObject('Object Repository/Page_CURA Healthcare Service/a_Go to Homepage'))
 */
 
-WebUI.comment("ReportFolder = ${RunConfiguration.getReportFolder()}")
+
+
+WebUI.comment("[TC1] projectDir = ${RunConfiguration.getProjectDir()}")
+// This line emits:
+//   "ProjectDir = C:/Users/qcq0264/katalon-workspace/ModifyingTestSuiteReport"
+
+WebUI.comment("[TC1] executionProfile = ${RunConfiguration.getExecutionProfile()}")
+//　This line emits:
+//   "ExecutionProfile = product"
+
+
+WebUI.comment("[TC1] ReportFolder = ${RunConfiguration.getReportFolder()}")
 // This line emits:
 //   "ReportFolder = C:\Users\qcq0264\AppData\Local\Temp\Katalon\Test Cases\TC1\20181122_101318" 
 //     when TC1 is executed independently from test suite
 //   "ReportFolder = C:\Users\qcq0264\katalon-workspace\ModifyingTestSuiteReport\Reports\TS1\20181122_101154" 
 //     when TC1 is called by TS1
 
-WebUI.comment("ProjectDir = ${RunConfiguration.getProjectDir()}")
-// This line emits:
-//   "ProjectDir = C:/Users/qcq0264/katalon-workspace/ModifyingTestSuiteReport"
 
-WebUI.comment("ExecutionProfile = ${RunConfiguration.getExecutionProfile()}")
-//　This line emits:
-//   "ExecutionProfile = product"
+// transform Report.html 
+WebUI.callTestCase(findTestCase('ReportTransformer'),
+	[	"projectDir": RunConfiguration.getProjectDir(),
+		"reportFolder": RunConfiguration.getReportFolder().replace('\\', '/'),
+		"executionProfile": RunConfiguration.getExecutionProfile()
+		],
+	FailureHandling.STOP_ON_FAILURE)
 
 WebUI.closeBrowser()
 

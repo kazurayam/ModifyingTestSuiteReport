@@ -9,4 +9,9 @@
       <initValue>'https://katalon-demo-cura.herokuapp.com/'</initValue>
       <name>G_URL</name>
    </GlobalVariableEntity>
+   <GlobalVariableEntity>
+      <description></description>
+      <initValue>''</initValue>
+      <name>G_lastReportFolder</name>
+   </GlobalVariableEntity>
 </GlobalVariableEntities>

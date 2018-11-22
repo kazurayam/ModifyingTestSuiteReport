@@ -13,7 +13,6 @@ import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import internal.GlobalVariable as GlobalVariable
 
-/**
- * This test case modifies a Report.html under ${projectDir}/Reports/TestSuiteName/yyyyMMdd_hhMMss directory.
- * This test case assumes that GlobalVariable.REPORT_FOLDER 
- */
+WebUI.comment("[ReportTransformer] projectDir = ${projectDir}")
+WebUI.comment("[ReportTransformer] reportFolder = ${reportFolder}")
+WebUI.comment("[ReportTransformer] executionProfile = ${executionProfile}")
